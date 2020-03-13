@@ -1,0 +1,12 @@
+{
+	"name": "integrationRuntimeLinked",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/05023169-6eea-4c86-98a0-344e01053193/resourcegroups/DataMov/providers/Microsoft.DataFactory/factories/DataMovementsSantander/integrationruntimes/integrationRuntimeSelfHosted",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}
