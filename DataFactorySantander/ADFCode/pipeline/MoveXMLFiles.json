@@ -22,11 +22,23 @@
 							"recursive": true
 						}
 					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "FileServerWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "BinaryInbound",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BinaryOutbound",
 						"type": "DatasetReference"
 					}
 				]
