@@ -21,7 +21,7 @@
 		},
 		"FileServerInbound_properties_typeProperties_host": {
 			"type": "string",
-			"defaultValue": "c:\\TestsB\\Inbound"
+			"defaultValue": "c:\\TestB\\Inbound"
 		},
 		"FileServerInbound_properties_typeProperties_userId": {
 			"type": "string",
