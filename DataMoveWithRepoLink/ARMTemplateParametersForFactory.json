@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DataMoveWithRepoLink"
+		},
+		"FileServerInbound_password": {
+			"value": ""
+		},
+		"FileServerOutbound_password": {
+			"value": ""
+		},
+		"integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId": {
+			"value": "/subscriptions/05023169-6eea-4c86-98a0-344e01053193/resourcegroups/DataMov/providers/Microsoft.DataFactory/factories/DataMovementsSantander/integrationruntimes/integrationRuntimeSelfHosted"
+		},
+		"FileServerInbound_properties_typeProperties_host": {
+			"value": "c:\\TestsB\\Inbound"
+		},
+		"FileServerInbound_properties_typeProperties_userId": {
+			"value": "datafactory"
+		},
+		"FileServerOutbound_properties_typeProperties_host": {
+			"value": "C:\\TestB\\Outbound"
+		},
+		"FileServerOutbound_properties_typeProperties_userId": {
+			"value": "datafactory"
+		}
+	}
+}

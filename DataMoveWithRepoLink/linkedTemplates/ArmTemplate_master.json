@@ -1,0 +1,91 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "DataMoveWithRepoLink"
+		},
+		"FileServerInbound_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerInbound'"
+		},
+		"FileServerOutbound_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerOutbound'"
+		},
+		"integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/05023169-6eea-4c86-98a0-344e01053193/resourcegroups/DataMov/providers/Microsoft.DataFactory/factories/DataMovementsSantander/integrationruntimes/integrationRuntimeSelfHosted"
+		},
+		"FileServerInbound_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "c:\\TestsB\\Inbound"
+		},
+		"FileServerInbound_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "datafactory"
+		},
+		"FileServerOutbound_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\TestB\\Outbound"
+		},
+		"FileServerOutbound_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "datafactory"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"FileServerInbound_password": {
+						"value": "[parameters('FileServerInbound_password')]"
+					},
+					"FileServerOutbound_password": {
+						"value": "[parameters('FileServerOutbound_password')]"
+					},
+					"integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId": {
+						"value": "[parameters('integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId')]"
+					},
+					"FileServerInbound_properties_typeProperties_host": {
+						"value": "[parameters('FileServerInbound_properties_typeProperties_host')]"
+					},
+					"FileServerInbound_properties_typeProperties_userId": {
+						"value": "[parameters('FileServerInbound_properties_typeProperties_userId')]"
+					},
+					"FileServerOutbound_properties_typeProperties_host": {
+						"value": "[parameters('FileServerOutbound_properties_typeProperties_host')]"
+					},
+					"FileServerOutbound_properties_typeProperties_userId": {
+						"value": "[parameters('FileServerOutbound_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

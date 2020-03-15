@@ -1,0 +1,206 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "DataMoveWithRepoLink"
+		},
+		"FileServerInbound_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerInbound'"
+		},
+		"FileServerOutbound_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerOutbound'"
+		},
+		"integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/05023169-6eea-4c86-98a0-344e01053193/resourcegroups/DataMov/providers/Microsoft.DataFactory/factories/DataMovementsSantander/integrationruntimes/integrationRuntimeSelfHosted"
+		},
+		"FileServerInbound_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "c:\\TestsB\\Inbound"
+		},
+		"FileServerInbound_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "datafactory"
+		},
+		"FileServerOutbound_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\TestB\\Outbound"
+		},
+		"FileServerOutbound_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "datafactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntimeLinked')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {
+					"linkedInfo": {
+						"resourceId": "[parameters('integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId')]",
+						"authorizationType": "Rbac"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MoveXMLFiles')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "FileServerWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "BinaryInbound",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "BinaryOutbound",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/BinaryInbound')]",
+				"[concat(variables('factoryId'), '/datasets/BinaryOutbound')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FileServerInbound')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServerInbound_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServerInbound_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServerInbound_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntimeLinked",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntimeLinked')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BinaryInbound')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileServerInbound",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileServerInbound')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FileServerOutbound')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServerOutbound_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServerOutbound_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServerOutbound_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntimeLinked",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntimeLinked')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BinaryOutbound')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileServerOutbound",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileServerOutbound')]"
+			]
+		}
+	]
+}
