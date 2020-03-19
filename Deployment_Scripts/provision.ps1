@@ -89,7 +89,6 @@ try
     }
 
 
-
     # Create objects
     Get-ChildItem -Path "$Path\LinkedService" | Sort-Object | % {
         Write-Output -Message "Creating linked service from file $($_.FullName)."
