@@ -12,13 +12,13 @@
 			"value": ""
 		},
 		"FileServerInbound_properties_typeProperties_host": {
-			"value": "c:\\TestB\\Inbound"
+			"value": "c:\\TestB\\InboundPW"
 		},
 		"FileServerInbound_properties_typeProperties_userId": {
 			"value": "datafactory"
 		},
 		"FileServerOutbound_properties_typeProperties_host": {
-			"value": "C:\\TestB\\Outbound"
+			"value": "C:\\TestB\\OutboundPW"
 		},
 		"FileServerOutbound_properties_typeProperties_userId": {
 			"value": "datafactory"

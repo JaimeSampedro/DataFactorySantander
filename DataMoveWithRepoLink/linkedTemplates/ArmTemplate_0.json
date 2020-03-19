@@ -21,7 +21,7 @@
 		},
 		"FileServerInbound_properties_typeProperties_host": {
 			"type": "string",
-			"defaultValue": "c:\\TestB\\Inbound"
+			"defaultValue": "c:\\TestB\\InboundPW"
 		},
 		"FileServerInbound_properties_typeProperties_userId": {
 			"type": "string",
@@ -29,7 +29,7 @@
 		},
 		"FileServerOutbound_properties_typeProperties_host": {
 			"type": "string",
-			"defaultValue": "C:\\TestB\\Outbound"
+			"defaultValue": "C:\\TestB\\OutboundPW"
 		},
 		"FileServerOutbound_properties_typeProperties_userId": {
 			"type": "string",
