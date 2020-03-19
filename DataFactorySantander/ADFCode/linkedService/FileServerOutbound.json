@@ -1,0 +1,17 @@
+{
+	"name": "FileServerOutbound",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\TestB\\OutboundPW",
+			"userId": "datafactory",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2NWZlYWYzZS1lMzk0LTRlMGMtOWJlZS04YjlkM2YyOGMxNWUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeLinked",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
