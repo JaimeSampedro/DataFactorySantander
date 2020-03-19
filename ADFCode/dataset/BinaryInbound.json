@@ -1,0 +1,16 @@
+{
+	"name": "BinaryInbound",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServerInbound",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation"
+			}
+		}
+	}
+}
