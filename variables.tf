@@ -4,39 +4,38 @@ variable "factoryName" {
   description = "(Required) Data Factory Name"
 }
 
-variable "AzureBlobStorage1_connectionString" {
+variable "FileServerInbound_password" {
   type        = string
-  description = "(Required) AzureBlobStorage1_connectionString"
+  description = "(Required) FileServerInbound_password"
 }
 
-variable "linkedService1_secretAccessKey" {
+variable "FileServerOutbound_password" {
   type        = string
-  description = "(Required) linkedService1_secretAccessKey"
+  description = "(Required) FileServerOutbound_password"
 }
 
-variable "linkedService2_password" {
+variable "FileServerInbound_properties_typeProperties_host" {
   type        = string
-  description = "(Required)linkedService2_password"
+  description = "(Required) FileServerInbound_properties_typeProperties_host"
 }
 
-variable "linkedService1_properties_typeProperties_accessKeyId" {
+variable "FileServerInbound_properties_typeProperties_userId" {
   type        = string
-  description = "(Required) linkedService1_properties_typeProperties_accessKeyId"
+  description = "(Required) FileServerInbound_properties_typeProperties_userId"
 }
 
-variable "linkedService2_properties_typeProperties_host" {
+variable "FileServerOutbound_properties_typeProperties_host" {
   type        = string
-  description = "(Required) linkedService2_properties_typeProperties_host"
+  description = "(Required)FileServerOutbound_properties_typeProperties_host"
 }
 
-variable "linkedService2_properties_typeProperties_userId" {
+variable "FileServerOutbound_properties_typeProperties_userId" {
   type        = string
-  description = "(Required)linkedService2_password"
+  description = "(Required)FileServerOutbound_properties_typeProperties_userId"
 }
 
-
-
-
-
-
+variable "integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId" {
+  type        = string
+  description = "(Required)integrationRuntimeLinked_properties_typeProperties_linkedInfo_resourceId"
+}
 
