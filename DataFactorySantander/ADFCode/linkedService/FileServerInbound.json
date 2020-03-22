@@ -5,9 +5,9 @@
 		"annotations": [],
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "c:\\TestB\\InboundPW",
+			"host": "c:\\TestB\\InboundJA",
 			"userId": "datafactory",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NzQ2NTgzZi1iMjkyLTQzNzQtYTAwNi0yYjA5ZjZiNmQwZmIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhMTlhMmJkMS1mYTY5LTQzZGYtODRhYi1lM2MzNzc5OTM4ZmMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntimeLinked",
